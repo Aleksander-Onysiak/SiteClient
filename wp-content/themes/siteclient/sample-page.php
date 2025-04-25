@@ -1,4 +1,4 @@
-<?= get_header('custom') ?>
+<?= get_header() ?>
 
     <script src="src/js/main.js"></script>
     <section class="my-projects">
@@ -11,4 +11,4 @@
     </section>
     <!--on ferme la boucle-->
 
-<?= get_footer('custom') ?>
+<?= get_footer() ?>

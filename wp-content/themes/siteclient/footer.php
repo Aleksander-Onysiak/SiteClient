@@ -5,7 +5,7 @@
         <h2 class="sr-only">Footer</h2>
         <div class="footer__div">
             <h3 class="footer__div__title">Le Vieux Moulin</h3>
-            <p class="footer__div__p">Vous êtes dans notre footer!</p>
+            <p class="footer__div__p">Parcourez le reste de notre contenu</p>
             <p class="footer__div__p"> N'hesitez pas à nous suivre sur nos réseaux et nous contacter via ceux-ci !</p>
         </div>
         <div class="footer__menu" itemtype="https://schema.org/PostalAddress">
@@ -15,11 +15,14 @@
                     Le Vieux Moulin de Strainchamp
                 </li>
                 <li class="footer-menu__sublist-item">
-                    <span itemprop="telephone">+32 (0)471 21 32 47</span>
+                    <span itemprop="telephone">+32 063 60 11 50</span>
                 </li>
                 <li class="footer-menu__sublist-item">
                     <a href="" itemprop="email"
-                       class="footer-menu__sublist-item__content">exemple@gmail.com</a>
+                       class="footer-menu__sublist-item__content">saaelevieux.moulin@gmail.com</a>
+                </li>
+                <li class="footer-menu__sublist-item">
+                    <span data-adress="region">Luxembourg</span>
                 </li>
                 <li class="footer-menu__sublist-item">
                     <span data-adress="pays">Belgique</span>
