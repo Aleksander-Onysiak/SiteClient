@@ -6,7 +6,7 @@
         <header class="contact__header">
             <h1 role="heading" aria-level="1" class="contact__title"><?= get_the_title(); ?></h1>
         </header>
-
+        <?php include ('templates/partials/stage.php'); ?>
         <section class="contact__form" style="">
             <h2 role="heading" aria-level="2" class="contact__h2">Et si l’on commençait à travailler ensemble?</h2>
             <?php

@@ -142,6 +142,19 @@ register_post_type('project', [
         ],
     ]
 );
+register_post_type('activity', [
+        'label' => 'Activities',
+        'description' => 'Description des activités',
+        'public' => true,
+        'hierarchic' => 6,
+        'menu_icon' => 'dashicons-welcome-view-site',
+        'show_in_nav_menus' => true,
+        'rewrite' => ['slug' => 'activités'],
+        'has_archive' => true,
+        'supports' => ['title', 'editor', 'excerpt', 'thumbnail',
+        ],
+    ]
+);
 
 
 // Charger les champs ACF exportés
