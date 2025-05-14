@@ -1,0 +1,29 @@
+@use "../utils/fonts" as f;
+@use "../visuals/buttons" as b;
+@use "../visuals/colors" as c;
+
+.stage {
+  text-align: center;
+  background-color: c.$colorOrange;
+  padding: 2% 5% 2%;
+
+  &__supline {
+
+  }
+
+  &__headline {
+    @include f.Montserrat-Bold;
+    font-size: 4rem;
+    margin: 0 2%;
+  }
+
+  &__subline {
+
+  }
+
+  &__description {
+    @include f.Montserrat-Regular;
+    font-size: 1.2rem;
+    margin: 2% 25% 0;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../utils/fonts" as f;
+@use "../visuals/buttons" as b;
+@use "../visuals/colors" as c;
+
+.nav {
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 20% 2%;
+    padding: 1rem 1.5rem;
+    list-style-type: none;
+
+    &_link {
+      @include f.Montserrat-Regular;
+      color: c.$colorBlack;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+  }
+}

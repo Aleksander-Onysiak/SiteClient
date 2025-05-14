@@ -1,0 +1,18 @@
+@use "sections/footer";
+@use "sections/stage";
+@use "sections/nav";
+@use "sections/other-projects";
+@use "sections/page-project";
+@use "sections/project-steps";
+@use "utils/fonts";
+@use "visuals/colors";
+@use "visuals/buttons";
+@use "sr-only";
+
+@use "visuals/colors" as c;
+@use "utils/fonts" as f;
+@use "visuals/buttons" as b;
+
+html {
+  background-color: c.$colorBeige;
+}

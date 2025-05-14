@@ -1,0 +1,37 @@
+@use "../utils/fonts" as f;
+@use "../visuals/colors" as c;
+
+.footer {
+  background-color: c.$colorOrange;
+  &__section {
+    display: flex;
+    flex-direction: row;
+    margin: 0 10%;
+    padding: 1rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    &__sublist {
+      &__title {
+        @include f.Montserrat-Bold;
+      }
+
+      &-item {
+        @include f.Montserrat-Regular;
+      }
+    }
+  }
+
+  &__div {
+    &__title {
+      @include f.Montserrat-Bold;
+
+    }
+
+    &__p {
+      @include f.Montserrat-Regular;
+
+    }
+  }
+}
