@@ -1,0 +1,26 @@
+@use "../visuals/colors" as c;
+@use "../utils/fonts" as f;
+
+.stage__cts-btn {
+  padding: 2% 5%;
+  border-radius: 0 2rem 0 2rem;
+  background-color: c.$colorWhite;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  margin: 2% 5%;
+}
+
+.stage__cts-btn a {
+  text-decoration: none;
+}
+
+.btn {
+  @include f.Montserrat-Bold;
+  font-size: 1rem;
+  padding: 2% 10%;
+  background-color: c.$colorRed;
+  border-radius: 0.5rem;
+}

@@ -9,36 +9,36 @@
             <p class="footer__div__p"> N'hesitez pas à nous suivre sur nos réseaux et nous contacter via ceux-ci !</p>
         </div>
         <div class="footer__menu" itemtype="https://schema.org/PostalAddress">
-            <h3 class="footer-menu__sublist__title">Nos coordonnées</h3>
-            <ul itemprop="address" itemscope="" class="footer-menu__sublist">
-                <li class="footer-menu__sublist-item">
+            <h3 class="footer__menu__sublist__title">Nos coordonnées</h3>
+            <ul itemprop="address" itemscope="addressLocality" class="footer__menu__sublist">
+                <li class="footer__menu__sublist-item" itemscope="addressLocality">
                     Le Vieux Moulin de Strainchamp
                 </li>
-                <li class="footer-menu__sublist-item">
+                <li class="footer__menu__sublist-item">
                     <span itemprop="telephone">+32 063 60 11 50</span>
                 </li>
-                <li class="footer-menu__sublist-item">
+                <li class="footer__menu__sublist-item">
                     <a href="" itemprop="email"
-                       class="footer-menu__sublist-item__content">saaelevieux.moulin@gmail.com</a>
+                       class="footer__menu__sublist-item__content">saaelevieux.moulin@gmail.com</a>
                 </li>
-                <li class="footer-menu__sublist-item">
-                    <span data-adress="region">Luxembourg</span>
+                <li class="footer__menu__sublist-item">
+                    <span data-adress="region" itemprop="addressRegion">Luxembourg</span>
                 </li>
-                <li class="footer-menu__sublist-item">
-                    <span data-adress="pays">Belgique</span>
+                <li class="footer__menu__sublist-item">
+                    <span data-adress="pays" itemprop="addressCountry">Belgique</span>
                 </li>
             </ul>
         </div>
-        <div class="footer__menu" itemtype="https://schema.org/PostalAddress">
+        <div class="footer__menu" itemtype="https://schema.org/SocialMediaPosting">
             <h3 class="footer-menu__sublist__title proj">Noss réseaux sociaux</h3>
-            <ul itemscope itemtype="https://schema.org/" class="footer-menu__sublist">
-                <li class="footer-menu__sublist-item" itemprop="">
+            <ul itemscope itemtype="SocialMediaPosting/sharedContent" class="footer-menu__sublist">
+                <li class="footer-menu__sublist-item" itemprop="sharedContent">
                     <a href="" class="footer-menu__sublist-item__content">Instagram</a>
                 </li>
-                <li class="footer-menu__sublist-item" itemprop="">
+                <li class="footer-menu__sublist-item" itemprop="sharedContent">
                     <a href="" class="footer-menu__sublist-item__content">Facebook</a>
                 </li>
-                <li class="footer-menu__sublist-item" itemprop="">
+                <li class="footer-menu__sublist-item" itemprop="sharedContent">
                     <a href="" class="footer-menu__sublist-item__content">Telegram</a>
                 </li>
             </ul>
@@ -48,6 +48,7 @@
         <div class="footer-bottom__reserved">&copy; 2025 Vieux Moulin de Strainchamp. Tous droits réservés.</div>
     </div>
 </footer>
+<?php wp_footer(); ?>
 </body>
 
 </html>

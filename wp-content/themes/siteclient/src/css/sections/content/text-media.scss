@@ -1,0 +1,62 @@
+@use "../../utils/fonts" as f;
+@use "../../visuals/colors" as c;
+
+.text-media {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+
+  &__position {
+    max-width: 50%;
+    height: auto;
+
+    &--left {
+      padding: 2% 5%;
+      margin: 2% 10%;
+    }
+
+    &--center {
+
+    }
+
+    &--right {
+
+    }
+  }
+
+  &__content {
+    &-text {
+      @include f.Poppins-Regular;
+      font-size: 1rem;
+    }
+
+    &-container {
+      width: calc(50% - 64px);
+      padding: 1rem;
+      display: block;
+    }
+
+    &-title {
+      @include f.Poppins-Bold;
+      font-size: 2rem;
+      font-weight: 700;
+      padding-bottom: 0.25rem;
+      margin: 0;
+    }
+
+    &-description {
+      @include f.Poppins-Regular;
+      font-size: 1rem;
+      padding-bottom: 1rem;
+    }
+
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+    display: block;
+  }
+}

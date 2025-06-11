@@ -1,5 +1,5 @@
 <?php $headline = get_sub_field('headline'); ?>
-<?php $text = get_sub_field('text'); ?>
+<?php $text = get_sub_field('text', false, false); ?>
 <?php $link = get_sub_field('link'); ?>
 <?php $image = get_sub_field('image'); ?>
 <?php $media_position = get_sub_field('media_position'); ?>
@@ -7,12 +7,14 @@
 
 <?php if ($headline || $text || $link || $image || $media_type): ?>
     <section class="text-media text-media__position--<?= esc_attr($media_position) ?>">
-        <?php if ($media_type === 'image' && !empty($image)): ?>
-            <?= responsive_image($image, ['lazy' => 'true', 'classes' => 'text-media__image']) ?>
-        <?php elseif ($media_type === 'video'): ?>
-            <video class="text-media__video" controls>
-            </video>
-        <?php endif; ?>
+        <div class="text-media_media">
+            <?php if ($media_type === 'image' && !empty($image)): ?>
+                <?= responsive_image($image, ['lazy' => 'true', 'classes' => 'text-media__image']) ?>
+            <?php elseif ($media_type === 'video'): ?>
+                <video class="text-media__video" controls>
+                </video>
+            <?php endif; ?>
+        </div>
         <div class="text-media__content-container">
             <?php if (!empty($headline)): ?>
                 <h2 class="text-media__content-title">

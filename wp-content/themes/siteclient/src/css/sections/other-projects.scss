@@ -1,9 +1,0 @@
-@use "../utils/fonts" as f;
-@use "../visuals/colors" as c;
-
-.other{
-  &-projects{
-    display: flex;
-    flex-direction:row;
-  }
-}

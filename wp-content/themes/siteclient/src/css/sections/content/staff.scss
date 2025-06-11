@@ -1,0 +1,71 @@
+@use "../../utils/fonts" as f;
+@use "../../visuals/colors" as c;
+
+.staff-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  padding: 4rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &_header {
+    margin: 2% 10%;
+
+    &-title {
+      @include f.Montserrat-Bold;
+
+    }
+
+    &-description {
+      @include f.Poppins-Regular;
+
+    }
+  }
+}
+
+.staff-card {
+  background-color: c.$colorWhite;
+  border-radius: 0.5rem;
+  border: 1px solid grey;
+  padding: 1rem 1rem 3rem 1rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  max-width: 300px;
+  margin: 0 auto;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  }
+
+  &-icon {
+    width: 100%;
+    border-radius: 0.25rem;
+    object-fit: cover;
+    display: block;
+    aspect-ratio: 1 / 1;
+    border: 1px grey;
+  }
+
+  &-job {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-family: 'Brush Script MT', cursive;
+    font-size: 2rem;
+    color: c.$colorBlack;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    user-select: none;
+    letter-spacing: 0.05em;
+  }
+
+  &-bio {
+    @include f.Montserrat-Regular;
+    text-align: center;
+    margin-top: 1rem;
+    color: c.$colorBlack;
+  }
+}

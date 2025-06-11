@@ -8,7 +8,8 @@ function hdc_trad_load_textdomain(): void
 }
 
 add_action('init', 'init_remove_support', 100);
-function init_remove_support() {
+function init_remove_support()
+{
     remove_post_type_support('post', 'editor');
     remove_post_type_support('page', 'editor');
     remove_post_type_support('product', 'editor');
@@ -19,58 +20,36 @@ function init_remove_support() {
 function my_own_mime_types($mimes)
 {
     // Ajout du mime type pour les fichiers SVG
-$mimes['svg'] = 'image/svg+xml';
+    $mimes['svg'] = 'image/svg+xml';
 
-  // Retourne le tableau des types MIME mis à jour
-  return $mimes;
+    // Retourne le tableau des types MIME mis à jour
+    return $mimes;
 }
 
 // Ajoute notre fonction de filtrage à l'action 'upload_mimes' pour permettre l'upload des fichiers SVG.
 add_filter('upload_mimes', 'my_own_mime_types');
 
 register_taxonomy('project_type', ['project'], [
-  'labels' => [
-    'name' => 'Types de projets',
-    'singular_name' => 'Type de projet',
-    'menu_name' => 'Types de projet',
-    'all_items' => 'Tous les types',
-    'edit_item' => 'Modifier le projet',
-    'view_item' => 'Voir le type',
-    'update_item' => 'Mettre à jour le type',
-    'add_new_item' => 'Ajouter un nouveau type',
-    'new_item_name' => 'Nom du nouveau type',
-    'search_items' => 'Rechercher un type',
-    'not_found' => 'Aucun type trouvé',
-  ],
-  'description' => 'Projets Design Web',
-  'public' => true,
-  'hierarchical' => true,
-  'show_ui' => true,
-  'show_admin_column' => true,
-  'show_tagcloud' => false,
-  'rewrite' => ['slug' => 'type-projet'],
-]);
-
-register_taxonomy('personal project', ['project'], [
     'labels' => [
-        'name' => 'projet',
-        'singular_name' => 'Projet Personnel'
+        'name' => 'Types de projets',
+        'singular_name' => 'Type de projet',
+        'menu_name' => 'Types de projet',
+        'all_items' => 'Tous les types',
+        'edit_item' => 'Modifier le projet',
+        'view_item' => 'Voir le type',
+        'update_item' => 'Mettre à jour le type',
+        'add_new_item' => 'Ajouter un nouveau type',
+        'new_item_name' => 'Nom du nouveau type',
+        'search_items' => 'Rechercher un type',
+        'not_found' => 'Aucun type trouvé',
     ],
-    'description' => 'Description',
+    'description' => 'Projets Design Web',
     'public' => true,
     'hierarchical' => true,
+    'show_ui' => true,
+    'show_admin_column' => true,
     'show_tagcloud' => false,
-]);
-
-register_taxonomy('school project', ['project'], [
-    'labels' => [
-        'name' => 'projet',
-        'singular_name' => 'Projet Scolaire'
-    ],
-    'description' => '',
-    'public' => true,
-    'hierarchical' => true,
-    'show_tagcloud' => false,
+    'rewrite' => ['slug' => 'type-projet'],
 ]);
 
 
@@ -127,13 +106,13 @@ add_action('wp_enqueue_scripts', function () {
     wp_dequeue_style('global-styles');
 }, 20);
 
-add_theme_support('post-thumbnails', ['project']);
+add_theme_support('post-thumbnails', ['project', 'activity']);
 
 register_post_type('project', [
         'label' => 'Projets',
         'description' => 'Description des projets',
         'public' => true,
-        'hierarchic' => 6,
+        'hierarchical' => 6,
         'menu_icon' => 'dashicons-welcome-view-site',
         'show_in_nav_menus' => true,
         'rewrite' => ['slug' => 'projets'],
@@ -142,26 +121,23 @@ register_post_type('project', [
         ],
     ]
 );
+
 register_post_type('activity', [
-        'label' => 'Activities',
-        'description' => 'Description des activités',
-        'public' => true,
-        'hierarchic' => 6,
-        'menu_icon' => 'dashicons-welcome-view-site',
-        'show_in_nav_menus' => true,
-        'rewrite' => ['slug' => 'activités'],
-        'has_archive' => true,
-        'supports' => ['title', 'editor', 'excerpt', 'thumbnail',
-        ],
-    ]
-);
+    'label' => 'Activities',
+    'description' => 'Description des activités',
+    'public' => true,
+    'hierarchical' => false, // Corrigé : 'hierarchic' → 'hierarchical' (booléen, pas un entier)
+    'menu_icon' => 'dashicons-welcome-view-site',
+    'show_in_nav_menus' => true,
+    'rewrite' => ['slug' => 'activites'], // sans accent pour éviter les bugs d'URL
+    'has_archive' => true,
+    'supports' => ['title', 'editor', 'excerpt', 'thumbnail'],
+]);
 
 
 // Charger les champs ACF exportés
 
 // Activer l'utilisation des vignettes (image de couverture) sur nos post types:
-add_theme_support('post-thumbnails', ['recipe', 'travel']);
-add_action('admin_post_nopriv_portfolio_contact_form_submit', 'dw_handle_contact_form_submit');
 
 function dw_contact_form_controller()
 {
@@ -262,26 +238,38 @@ function enqueue_assets_from_vite_manifest(): void
 {
     $manifestPath = get_theme_file_path('dist/.vite/manifest.json');
 
-    if (file_exists($manifestPath)) {
-        $manifest = json_decode(file_get_contents($manifestPath), true);
+    if (!file_exists($manifestPath)) {
+        return;
+    }
 
-        // Vérifier et ajouter le fichier JavaScript
-        if (isset($manifest['wp-content/themes/siteclient/src/js/main.js'])) {
-            wp_enqueue_script('siteclient',
-                get_theme_file_uri('dist/' . $manifest['wp-content/themes/siteclient/src/js/main.js']['file']), [], null, true);
-        }
+    $manifest = json_decode(file_get_contents($manifestPath), true);
 
-        // Vérifier et ajouter le fichier CSS
-        if (isset($manifest['wp-content/themes/siteclient/src/css/style.scss'])) {
-            wp_enqueue_style('portfolio',
-                get_theme_file_uri('dist/' . $manifest['wp-content/themes/siteclient/src/css/style.scss']['file']));
-        }
+    $jsKey = 'wp-content/themes/siteclient/dist/assets/main.js';
+
+    $cssKey = 'wp-content/themes/siteclient/src/css/style.scss';
+
+    if (isset($manifest[$jsKey])) {
+        wp_enqueue_script(
+            'siteclient-main-js',
+            get_theme_file_uri('dist/assets/' . $manifest[$jsKey]['file']),
+            [],
+            null,
+            true
+        );
+    }
+
+    if (isset($manifest[$cssKey])) {
+        wp_enqueue_style(
+            'siteclient-style',
+            get_theme_file_uri('dist/assets/' . $manifest[$cssKey]['file']),
+            [],
+            null
+        );
     }
 }
+add_action('wp_enqueue_scripts', 'enqueue_assets_from_vite_manifest');
 
-//enqueue_assets_from_vite_manifest();
 
-// 1. Charger un fichier "public" (asset/image/css/script/...) pour le front-end sans que cela ne s'applique à l'admin.
 function dw_asset(string $file): string
 {
     $manifestPath = get_theme_file_path('dist/.vite/manifest.json');
@@ -347,13 +335,52 @@ function responsive_image($image, $settings): bool|string
         <!-- Ici, vous pouvez ajouter manuellement des balises <source> pour d'autres formats (WebP, AVIF, etc.)
              si ces formats sont disponibles via un plugin ou un traitement personnalisé. -->
         <img
-            src="<?= esc_url($src) ?>"
-            alt="<?= esc_attr($alt) ?>"
-            loading="<?= esc_attr($lazy) ?>"
-            srcset="<?= esc_attr($srcset) ?>"
-            sizes="<?= esc_attr($sizes) ?>"
-            class="<?= esc_attr($classes) ?>">
+                src="<?= esc_url($src) ?>"
+                alt="<?= esc_attr($alt) ?>"
+                loading="<?= esc_attr($lazy) ?>"
+                srcset="<?= esc_attr($srcset) ?>"
+                sizes="<?= esc_attr($sizes) ?>"
+                class="<?= esc_attr($classes) ?>">
     </picture>
     <?php
     return ob_get_clean();
+}
+
+//nav menu
+class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
+{
+    public function start_lvl(&$output, $depth = 0, $args = [])
+    {
+        $output .= '<ul class="sub-menu">';
+    }
+
+    public function end_lvl(&$output, $depth = 0, $args = [])
+    {
+        $output .= '</ul>';
+    }
+
+    public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
+    {
+        $classes = empty($item->classes) ? [] : (array)$item->classes;
+
+        $is_current = in_array('current-menu-item', $classes) || in_array('current_page_item', $classes);
+        $has_children = in_array('menu-item-has-children', $classes);
+
+        $li_classes = 'nav__container_item' . ($has_children ? ' menu-item-has-children' : '');
+        $link_classes = 'nav__container_link' . ($is_current ? ' nav__container_link--active' : '');
+        $aria_has_popup = $has_children ? ' aria-haspopup="true" aria-expanded="false"' : '';
+
+        $output .= '<li class="' . esc_attr($li_classes) . '">';
+        $output .= '<a href="' . esc_url($item->url) . '" class="' . esc_attr($link_classes) . '"' . $aria_has_popup . '>';
+        $output .= esc_html($item->title);
+        if ($has_children) {
+            $output .= ' <span class="submenu-indicator" aria-hidden="true">▾</span>';
+        }
+        $output .= '</a>';
+    }
+
+    public function end_el(&$output, $item, $depth = 0, $args = [])
+    {
+        $output .= '</li>';
+    }
 }

@@ -1,39 +1,87 @@
 <?php
 if (get_row_layout() === 'grid-card'):
-    if (have_rows('grid-card-repeater')): ?>
-        <section class="grid-cards">
-            <?php while (have_rows('grid-card-repeater')): the_row();
-                $link = get_sub_field('link'); // champ de type "link"
-                $title = get_sub_field('title');
-                $icon = get_sub_field('icon');
-                $description = get_sub_field('description'); // champ WYSIWYG
-                ?>
-                <div class="grid-card">
-                    <?php if ($icon): ?>
-                        <div class="grid-card-icon">
-                            <img src="<?= esc_url($icon['url']); ?>" alt="<?= esc_attr($icon['alt'] ?: $title); ?>">
-                        </div>
+    $grid_title = get_sub_field('grid_title');
+    $grid_description = get_sub_field('grid_description');
+
+    $cards = get_sub_field('grid-card-repeater');
+
+    if ($cards):
+        $linkCount = 0;
+        foreach ($cards as $card) {
+            if (!empty($card['link'])) {
+                $linkCount++;
+            }
+        }
+        ?>
+
+        <section class="grid-container">
+
+            <?php if ($grid_title || $grid_description): ?>
+                <div class="grid-container__header">
+                    <?php if ($grid_title): ?>
+                        <p class="grid-container__header-title" aria-level="2" role="heading"><?= esc_html($grid_title); ?></p>
                     <?php endif; ?>
-                    <?php if ($title): ?>
-                        <h3><?= esc_html($title); ?></h3>
-                    <?php endif; ?>
-                    <?php if ($link): ?>
-                        <a href="<?= esc_url($link['url']); ?>"
-                           title="<?= esc_attr($link['title'] ?: $title); ?>"
-                           class="grid-card-link"
-                            <?= $link['target'] ? 'target="' . esc_attr($link['target']) . '"' : ''; ?>>
-                            <?php if ($link): ?>
-                            <?php endif; ?>
-                        </a>
-                    <?php endif; ?>
-                    <?php if ($description): ?>
-                        <div class="grid-card-description">
-                            <?= wp_kses_post($description); ?>
-                        </div>
+                    <?php if ($grid_description): ?>
+                        <p class="grid-container__header-description"><?= esc_html($grid_description); ?></p>
                     <?php endif; ?>
                 </div>
-            <?php endwhile; ?>
+            <?php endif; ?>
+
+            <div class="grid-cards">
+
+                <?php
+                $currentLinkIndex = 0;
+
+                foreach ($cards as $card):
+                    $title = $card['title'];
+                    $icon = $card['icon'];
+                    $link = $card['link'];
+                    $description = $card['description'];
+
+                    $classes = ['grid-card'];
+
+                    if ($link) {
+                        $classes[] = 'grid-card__link';
+                        $currentLinkIndex++;
+                        if ($linkCount >= 2 && $currentLinkIndex === 2) {
+                            $classes[] = 'grid-card__link2';
+                        }
+                    }
+                    ?>
+
+                    <div class="<?= esc_attr(implode(' ', $classes)); ?>">
+                        <div class="grid-card-header">
+                            <?php if ($icon): ?>
+                                <img class="grid-card-header-img"
+                                     src="<?= esc_url($icon['url']); ?>"
+                                     alt="<?= esc_attr($icon['alt'] ?: $title); ?>">
+                            <?php endif; ?>
+
+                            <?php if ($title): ?>
+                                <h3 class="grid-card-header-title"><?= esc_html($title); ?></h3>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="grid-card-body">
+                            <?php if ($description): ?>
+                                <p class="grid-card-description"><?= wp_kses_post($description); ?></p>
+                            <?php endif; ?>
+
+                            <?php if ($link): ?>
+                                <a class="grid-card-link" href="<?= esc_url($link['url']); ?>"
+                                   title="<?= esc_attr($link['title'] ?: $title); ?>"
+                                    <?= !empty($link['target']) ? 'target="' . esc_attr($link['target']) . '"' : ''; ?>>
+                                    <?= esc_html($link['title'] ?: 'En savoir plus'); ?>
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                <?php endforeach; ?>
+
+            </div>
         </section>
+
     <?php endif;
 endif;
 ?>

@@ -1,0 +1,39 @@
+@use "../../utils/fonts" as f;
+@use "../../visuals/colors" as c;
+
+.text-content {
+
+  &__icon {
+    max-width: 10%;
+    height: auto;
+
+    &-img {
+      max-width: 10%;
+      height: auto;
+    }
+  }
+
+  &__subcontainer {
+    display: flex;
+    flex-direction: row;
+
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    padding: 2%;
+    border: 1px solid c.$colorBlack;
+  }
+
+  &__title {
+    @include f.Montserrat-Bold;
+    font-size: 1.625rem;
+  }
+
+  &__description {
+    @include f.Montserrat-Regular;
+    font-size: 1rem;
+  }
+}

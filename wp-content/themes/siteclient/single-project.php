@@ -1,9 +1,10 @@
 <?= get_header(); ?>
 
 <?php include('templates/partials/stage.php'); ?>
-
-<h1 class="page-project_title"><?= esc_html(get_the_title()); ?></h1>
-<?php the_content(); ?>
+<header class="page-project_header">
+    <h1 class="page-project_title"><?= esc_html(get_the_title()); ?></h1>
+    <div><?php the_content() ?></div>
+</header>
 
 <section class="project">
     <?php if (have_rows('projects')): ?>
@@ -11,8 +12,8 @@
 
 
             $title = get_sub_field('title');
-            $description = get_sub_field('description');
-            $image = get_sub_field('image'); // image ACF (URL)
+            $description = get_sub_field('description', false, false);
+            $image = get_sub_field('image');
             ?>
             <div class="project_item">
                 <div class="project_content">
@@ -37,16 +38,61 @@
             </div>
         <?php endwhile; ?>
     <?php else : ?>
-        <p>Aucun contenu trouvé pour ce projet.</p>
     <?php endif; ?>
 </section>
 
+<?php include('templates/flexible.php'); ?>
+
+<?php if (have_rows('sponsors-section')): ?>
+    <section class="sponsors-section">
+        <?php while (have_rows('sponsors-section')): the_row();
+            $title = get_sub_field('sponsors-header');
+            $sponsor_description = get_sub_field('sponsor-description');
+            $sponsors = get_sub_field('sponsors');
+
+            if ($title): ?>
+                <h2 class="sponsors-header"><?= esc_html($title); ?></h2>
+            <?php endif; ?>
+
+            <?php if ($sponsor_description): ?>
+                <p class="sponsors-description"><?= esc_html($sponsor_description); ?></p>
+            <?php endif; ?>
+
+            <?php if (have_rows('sponsors')): ?>
+                <div class="sponsors-container">
+                    <?php while (have_rows('sponsors')): the_row();
+                        $logo = get_sub_field('sponsor-image');
+                        $link = get_sub_field('sponsor-link');
+                        ?>
+                        <?php if ($logo || $link): ?>
+                            <div class="sponsor-card">
+                                <a class="sponsor-card__link"
+                                   href="<?= esc_url($link); ?>"
+                                   title="Ce lien vous amènera vers la page du sponsor">
+                                    <?php if (!empty($logo)): ?>
+                                        <div class="sponsor-card-logo">
+                                            <img src="<?= esc_url($logo['url']); ?>"
+                                                 alt="<?= esc_attr($logo['alt']); ?>"
+                                                 class="sponsor-card__logo-img">
+                                        </div>
+                                    <?php endif; ?>
+                                </a>
+                            </div>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
+                </div>
+            <?php endif; ?>
+        <?php endwhile; ?>
+    </section>
+<?php else: ?>
+
+<?php endif; ?>
 
 <section class="others">
     <?php
     $future_projets = new WP_Query([
         'post_type' => 'project',
-        'posts_per_page' => 3,
+        'posts_per_page' => 5,
         'meta_query' => [
             [
                 'key' => 'type_projet',
@@ -55,29 +101,28 @@
             ]
         ],
         'post_status' => 'publish',
-        'post__not_in' => [get_the_ID()] // Exclure le projet actuel
     ]);
 
     if ($future_projets->have_posts()) :
         ?>
-        <div class="front-project__container">
-            <h2 role="heading" aria-level="2" class="front-project__quote">
-                D’autres projets <span>tout aussi intéressants</span>
+        <div class="project__container">
+            <h2 role="heading" aria-level="2" class="project__quote">
+                D’autres projets <span class="project__quote-span">tout aussi intéressants</span>
             </h2>
         </div>
-        <div id="cards" class="other-projects">
+        <div id="cards" class="projects">
             <?php while ($future_projets->have_posts()) : $future_projets->the_post(); ?>
-                <article tabindex="0" class="other-project__card">
+                <article tabindex="0" class="project__card">
                     <div class="opacity">
                         <a class="project__card-link-sro" href="<?= get_the_permalink(); ?>"
                            title="Ce lien vous amènera vers la page du projet">
-                            <div class="other-project__card-text-container">
-                                <img class="other-project__card-image"
+                            <div class="project__card-text-container">
+                                <img class="project__card-image"
                                      src="<?= esc_url(get_the_post_thumbnail_url()); ?>"
                                      alt="<?= esc_attr(get_the_title()); ?>" width="300" height="300">
                                 <div class="project-link">
                                     <h3 role="heading" aria-level="3"
-                                        class="other-project__card-title"><?= esc_html(get_the_title()); ?></h3>
+                                        class="project__card-title"><?= esc_html(get_the_title()); ?></h3>
                                 </div>
                             </div>
                         </a>

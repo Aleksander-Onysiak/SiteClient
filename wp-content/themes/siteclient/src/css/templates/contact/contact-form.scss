@@ -1,0 +1,133 @@
+@use "../../utils/fonts" as f;
+@use "../../visuals/colors" as c;
+
+.contact {
+  &__h2 {
+    margin-top: 0;
+    @include f.Poppins-Bold;
+    font-size: 2rem;
+  }
+
+  &__image {
+    max-width: 100%;
+  }
+
+  &__dl {
+    display: flex;
+    flex-direction: row;
+
+    &_wrapper {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &_container {
+      display: flex;
+      flex-direction: column;
+      padding: 5%;
+    }
+
+  }
+
+  &__dt {
+    &-1 {
+      @include f.Poppins-Bold;
+      font-size: 1.256rem;
+    }
+
+    &-2 {
+      @include f.Poppins-Bold;
+      font-size: 1.256rem;
+    }
+  }
+
+  &__dd {
+    &-1 {
+      @include f.Poppins-Regular;
+      font-size: 1rem;
+    }
+
+    &-2 {
+      @include f.Poppins-Regular;
+      font-size: 1rem;
+    }
+  }
+
+  &__form {
+    &_social {
+
+      &-link {
+        color: c.$colorRed;
+        @include f.Poppins-Regular;
+        font-size: 1rem;
+        text-decoration: none;
+      }
+
+
+    }
+
+    &_container {
+      display: flex;
+      flex-direction: row;
+    }
+
+    &-1 {
+      max-width: 50%;
+      margin: 5% 5% 5% 10%;
+      background-color: c.$colorLightBlue;
+    }
+
+    &-2 {
+      max-width: 1fr;
+      margin: 5% 10% 5% 5%;
+    }
+  }
+}
+
+.form_fields {
+
+}
+
+.field {
+  &__input {
+    padding: 5%;
+    border: none;
+    border-radius: 0.5rem;
+
+    &-small {
+      padding: 2%;
+      border: none;
+      border-radius: 0.5rem;
+    }
+  }
+
+  &__label {
+    @include f.Poppins-Regular;
+    font-size: 1rem;
+  }
+}
+
+.form {
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+
+    .field--full {
+      border: none;
+      border-radius: 0.5rem;
+
+      display: flex;
+      flex-direction: column;
+      grid-column: span 2;
+    }
+  }
+}
+
+fieldset {
+  border: none;
+}
+.contact__form_social-link:hover{
+  @include f.Poppins-Bold;
+  font-size: 2rem;
+}

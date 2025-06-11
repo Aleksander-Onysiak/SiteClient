@@ -1,0 +1,129 @@
+@use "../../utils/fonts" as f;
+@use "../../visuals/buttons" as b;
+@use "../../visuals/colors" as c;
+
+.stage {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  background-color: c.$colorOrange;
+  padding: 0 2%;
+  position: relative;
+
+  &__div-text {
+    max-width: 100%;
+    flex: 1;
+    margin: 5% 2%;
+  }
+
+  &__div-image {
+    max-width: 40%;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__supline {
+
+  }
+
+  &__headline {
+    @include f.Montserrat-Bold;
+    font-size: 4rem;
+    margin: 0 2%;
+  }
+
+  &__subline {
+
+  }
+
+  &__description {
+    @include f.Poppins-Regular;
+    font-size: 1.2rem;
+    margin: 2% 10%;
+  }
+
+  &.no-image {
+    &__div-text {
+      max-width: 100%;
+    }
+
+    &__div-image {
+      display: none;
+    }
+  }
+}
+
+
+
+.front-page__stage {
+  background-color: c.$colorOrange;
+}
+
+.stage__home {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  background-color: c.$colorOrange;
+
+  &__div-text {
+    margin: 5% Capture d’écran 2025-05-31 à 11.31 .212%;
+    padding: 0;
+    max-width: 60%;
+    flex: 1;
+  }
+
+  &__div-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__headline {
+    @include f.Montserrat-Bold;
+    font-size: 4rem;
+    margin: 0 2%;
+  }
+
+  &__subline {
+    position: absolute;
+    bottom: 2%;
+    left: 65%;
+    color: c.$colorWhite;
+    @include f.Montserrat-Bold;
+    font-size: 2rem;
+  }
+
+  &__description {
+    @include f.Poppins-Regular;
+    font-size: 1.2rem;
+    text-align: left;
+    margin: 2%;
+  }
+
+  &.no-image {
+    &__div-text {
+      max-width: 100%;
+    }
+
+    &__div-image {
+      display: none;
+    }
+  }
+}
+
+.stage__div-image picture,
+.stage__div-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}

@@ -1,20 +1,22 @@
-<?php
-get_header(); ?>
+<?php /* Template Name: Template "Notre pédagogie" */ ?>
+
+<?= get_header(); ?>
+
 <?php include('templates/partials/stage.php'); ?>
-<header class="activity_header">
-    <h1 class="activity_title"><?= esc_html(get_the_title()); ?></h1>
-    <div class="activity_description"><?php echo do_shortcode(get_the_content()); ?></div>
-</header>
 
 <?php include('templates/flexible.php'); ?>
-<?php include('templates/sponsors/sponsor.php'); ?>
+<?php include('templates/content/text-media/staff.php'); ?>
+<?php include('templates/content/banner/banner.php'); ?>
 
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+    <div><?php the_content(); ?></div>
+<?php endwhile; endif; ?>
 
 <?php
 // Activités futures
 $future_activities = new WP_Query([
     'post_type' => 'activity',
-    'posts_per_page' => 5,
+    'posts_per_page' => 4,
     'post_status' => 'publish',
     'orderby' => 'date',
     'order' => 'DESC',
@@ -39,4 +41,4 @@ $future_activities = new WP_Query([
         wp_reset_postdata(); endif; ?>
 </section>
 
-<?php get_footer(); ?>
+<?= get_footer(); ?>

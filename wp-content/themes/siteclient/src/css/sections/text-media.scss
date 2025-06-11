@@ -1,9 +1,0 @@
-@use "../utils/fonts" as f;
-@use "../visuals/colors" as c;
-
-.text-media {
-  &__content-container{
-    display: flex;
-    flex-direction: row;
-  }
-}

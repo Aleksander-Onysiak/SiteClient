@@ -1,0 +1,27 @@
+@use "../utils/fonts" as f;
+@use "../visuals/buttons" as b;
+@use "../visuals/colors" as c;
+
+.sponsors-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+
+.sponsor-card {
+  max-width: 30%;
+  padding: 2% 5%;
+
+  &__logo {
+
+    &-img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+
+  &__title {
+
+  }
+}
