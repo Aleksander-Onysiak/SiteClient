@@ -3,10 +3,16 @@
 
 .activities {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 2rem;
   padding: 2rem;
+  @media screen and (min-width : 600px){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+  }
 
   &__title {
     @include f.Montserrat-Bold;
@@ -14,18 +20,36 @@
     margin: 2% 10%;
     padding: 10% 10% 0 10%;
     text-align: center;
+    @media screen and (min-width : 600px){
+      @include f.Montserrat-Bold;
+      font-size: 1rem;
+      margin: 2% 10%;
+      padding: 10% 10% 0 10%;
+      text-align: center;
+    }
   }
 }
 
 .activity__card {
-  max-width: 25%;
+  max-width: 100%;
   background: white;
-  border-radius: 12px;
+  border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
   text-align: center;
-
+  @media screen and (min-width : 600px){
+    max-width: 25%;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    text-align: center;
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
   &:hover {
     transform: translateY(-5px);
   }
@@ -89,10 +113,17 @@
   }
 
   &-image {
-    width: 100%;
+    width: 50%;
     height: auto;
     object-fit: contain;
+    margin-top: 2%;
     border-bottom: 1px solid #eee;
+    @media screen and (min-width : 600px){
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-bottom: 1px solid #eee;
+    }
   }
 
   &-text-container {

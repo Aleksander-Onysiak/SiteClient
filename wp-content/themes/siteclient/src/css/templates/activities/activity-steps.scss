@@ -11,14 +11,25 @@
 
   &_title {
     @include f.Poppins-Bold;
-    font-size: 3rem;
+    font-size: 2rem;
     padding: 1% 10% 0 2%;
     margin: 0;
+    @media screen and (min-width : 600px){
+      @include f.Poppins-Bold;
+      font-size: 3rem;
+      padding: 1% 10% 0 2%;
+      margin: 0;
+    }
   }
 
   &_description {
     @include f.Poppins-Regular;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding: 1% 10% 1% 2%;
+    @media screen and (min-width : 600px){
+      @include f.Poppins-Regular;
+      font-size: 1rem;
+      padding: 1% 10% 1% 2%;
+    }
   }
 }

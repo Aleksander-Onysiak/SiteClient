@@ -3,15 +3,33 @@
 
 .footer {
   background-color: c.$colorOrange;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1rem 1.5rem;
+
   &__section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column; // ✅ mobile : en colonne
+    gap: 2rem;
     margin: 0 10%;
     padding: 1rem 1.5rem;
-    justify-content: space-between;
+
+    @media (min-width: 1000px) {
+      flex-direction: row; // ✅ desktop : en ligne
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0 ;
+    }
   }
 
   &__menu {
+    margin: 2% 0;
+
+    @media (min-width: 1000px) {
+      margin: 0;
+    }
+
     &__sublist {
       &__title {
         @include f.Montserrat-Bold;
@@ -26,12 +44,10 @@
   &__div {
     &__title {
       @include f.Montserrat-Bold;
-
     }
 
     &__p {
       @include f.Montserrat-Regular;
-
     }
   }
 }

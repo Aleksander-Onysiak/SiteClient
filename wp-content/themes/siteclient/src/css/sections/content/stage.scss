@@ -4,11 +4,17 @@
 
 .stage {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   text-align: center;
   background-color: c.$colorOrange;
-  padding: 0 2%;
+  padding: 0 5%;
+  margin: 0 0 10%;
   position: relative;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    padding: 0 2%;
+  }
 
   &__div-text {
     max-width: 100%;
@@ -18,31 +24,62 @@
 
   &__div-image {
     max-width: 40%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    @media screen and (max-width: 599px) {
+      display: none;
+    }
   }
 
   &__image {
-    max-width: 100%;
-    height: auto;
-  }
+    display: none;
 
-  &__supline {
-
+    @media screen and (min-width: 600px) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
   &__headline {
     @include f.Montserrat-Bold;
-    font-size: 4rem;
+    font-size: 2rem;
     margin: 0 2%;
-  }
 
-  &__subline {
-
+    @media screen and (min-width: 600px) {
+      font-size: 4rem;
+    }
   }
 
   &__description {
     @include f.Poppins-Regular;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     margin: 2% 10%;
+
+    @media screen and (min-width: 600px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__subline {
+    display: none;
+
+    @media screen and (min-width: 600px) {
+      display: block;
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      color: c.$colorWhite;
+      font-size: 2rem;
+      @include f.Montserrat-Bold;
+      z-index: 2;
+    }
+  }
+
+  &__supline {
   }
 
   &.no-image {
@@ -56,50 +93,76 @@
   }
 }
 
-
-
 .front-page__stage {
   background-color: c.$colorOrange;
 }
 
 .stage__home {
   display: flex;
-  flex-direction: row;
-  text-align: left;
+  flex-direction: column;
+  text-align: center;
   background-color: c.$colorOrange;
 
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    text-align: left;
+  }
+
   &__div-text {
-    margin: 5% Capture d’écran 2025-05-31 à 11.31 .212%;
+    margin: 5% 2%;
     padding: 0;
-    max-width: 60%;
+    max-width: 100%;
     flex: 1;
+
+    @media screen and (min-width: 600px) {
+      max-width: 60%;
+    }
   }
 
   &__div-image {
     width: 100%;
     height: 100%;
-    display: block;
     position: relative;
+
+    @media screen and (max-width: 599px) {
+      display: none;
+    }
   }
 
   &__image {
-    max-width: 100%;
-    height: auto;
+    display: none;
+
+    @media screen and (min-width: 600px) {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
   }
 
   &__headline {
     @include f.Montserrat-Bold;
-    font-size: 4rem;
+    font-size: 2rem;
     margin: 0 2%;
+
+    @media screen and (min-width: 600px) {
+      font-size: 4rem;
+    }
   }
 
   &__subline {
-    position: absolute;
-    bottom: 2%;
-    left: 65%;
-    color: c.$colorWhite;
-    @include f.Montserrat-Bold;
-    font-size: 2rem;
+    display: none;
+
+    @media screen and (min-width: 600px) {
+      display: block;
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      color: c.$colorWhite;
+      font-size: 2rem;
+      @include f.Montserrat-Bold;
+      z-index: 2;
+    }
   }
 
   &__description {

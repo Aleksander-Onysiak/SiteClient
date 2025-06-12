@@ -5,7 +5,7 @@
 
     <main class="contact">
         <header class="contact__header">
-            <h1 role="heading" aria-level="1" class="contact__title sr-only"><?= get_the_title(); ?></h1>
+            <h1 role="heading" aria-level="1" class="contact__title"><?= get_the_title(); ?></h1>
         </header>
 
         <section class="contact__form_container">

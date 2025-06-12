@@ -38,13 +38,22 @@
 
     &_title {
       @include f.Poppins-Bold;
-      font-size: 2rem;
+      font-size: 1rem;
       margin: 2%;
+      @media screen and (min-width: 600px) {
+        @include f.Poppins-Bold;
+        font-size: 2rem;
+        margin: 2%;
+      }
     }
 
     &_description {
       @include f.Poppins-Regular;
-      font-size: 1.125rem;
+      font-size: 0.8rem;
+      @media screen and (min-width: 600px) {
+        @include f.Poppins-Regular;
+        font-size: 1.125rem;
+      }
     }
 
     &_image {
@@ -63,7 +72,7 @@
     display: flex;
     flex-direction: column;
     margin: 2% 10%;
-    text-align:center;
+    text-align: center;
   }
 
   &_title {

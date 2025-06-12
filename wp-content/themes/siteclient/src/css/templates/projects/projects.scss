@@ -11,11 +11,18 @@
 
 .projects {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 100%;
-  justify-content: space-between;
   gap: 2rem;
-  padding: 2rem;
+  padding: 1rem;
+  @media screen and (min-width : 600px){
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2rem;
+  }
 
   &__title {
     @include f.Montserrat-Bold;
@@ -25,15 +32,26 @@
 }
 
 .project__card {
-  max-width: 30%;
+  max-width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background: white;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   padding: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   text-align: center;
   transition: transform 0.3s ease;
+  @media screen and (min-width: 600px) {
+    max-width: 30%;
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -51,16 +69,29 @@
   &-title {
     @include f.Poppins-Bold;
     margin-top: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-decoration: none;
+    @media screen and (min-width: 600px) {
+      @include f.Poppins-Bold;
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+    }
   }
 
   &-link {
     @include f.Poppins-Regular;
-    font-size: 0.9rem;
+    font-size: 0.5rem;
     color: c.$colorBlack;
     display: block;
     margin-top: 0.5rem;
+    @media screen and (min-width: 600px) {
+      @include f.Poppins-Regular;
+      font-size: 0.9rem;
+      color: c.$colorBlack;
+      display: block;
+      margin-top: 0.5rem;
+    }
   }
 }
 
@@ -116,7 +147,6 @@
   }
 }
 
-// ✅ Responsive
 @media screen and (max-width: 1024px) {
   .project__card {
     max-width: 48%;
@@ -128,7 +158,8 @@
     max-width: 100%;
   }
 }
-.project__card-title:hover{
+
+.project__card-title:hover {
   @include f.Poppins-Bold;
   letter-spacing: 0.03em;
 }
