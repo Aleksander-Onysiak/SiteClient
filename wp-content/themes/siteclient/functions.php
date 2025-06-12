@@ -384,3 +384,4 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
         $output .= '</li>';
     }
 }
+flush_rewrite_rules();
