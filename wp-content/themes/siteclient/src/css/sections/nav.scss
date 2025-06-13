@@ -12,9 +12,9 @@
     cursor: pointer;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 24px;
-    margin: 1rem;
+    width: 2rem;
+    height: 1.5rem;
+    margin: 1.5rem 1rem;
 
     span {
       height: 3px;
@@ -33,7 +33,6 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 0.5rem;
-    margin: 2% 20%;
     list-style-type: none;
     position: relative;
 
@@ -102,14 +101,13 @@
   @media (max-width: 999px) {
     &__container {
       position: absolute;
-      top: 60px;
-      left: 0;
-      right: 0;
       width: 100%;
       background: c.$colorOrange;
       flex-direction: column;
       align-items: flex-start;
       padding: 1rem;
+      left: 0;
+      top: 5.5rem;
       display: none;
       z-index: 9;
 
@@ -142,6 +140,16 @@
 
     #menu-toggle:checked + .nav__burger + .nav__container {
       display: flex;
+    }
+  }
+
+  // CENTRAGE EN DESKTOP
+  @media (min-width: 1000px) {
+    &__container {
+      margin: 2% 10%;
+      max-width: 80%;
+      justify-content: center;
+      gap:1rem;
     }
   }
 }

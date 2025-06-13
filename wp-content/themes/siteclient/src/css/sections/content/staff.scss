@@ -19,15 +19,25 @@
 
   &_header {
     margin: 2% 10%;
-
+    @media screen and (min-width : 600px){
+      margin: 2% 10%;
+    }
     &-title {
       @include f.Montserrat-Bold;
-
+      font-size: 1.5rem;
+      @media screen and (min-width : 600px){
+        @include f.Montserrat-Bold;
+        font-size: 2rem;
+      }
     }
 
     &-description {
       @include f.Poppins-Regular;
-
+      font-size: 0.8rem;
+      @media screen and (min-width : 600px){
+        @include f.Poppins-Regular;
+        font-size: 1rem;
+      }
     }
   }
 }

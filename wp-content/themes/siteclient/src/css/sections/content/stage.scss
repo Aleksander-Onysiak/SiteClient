@@ -17,6 +17,15 @@
     margin: 0 0 2%;
   }
 
+  &__link {
+    @media screen and (min-width: 600px) {
+      @include f.Poppins-Bold;
+      font-size: 1rem;
+      color: c.$colorBlack;
+      text-decoration: none;
+    }
+  }
+
   &__div-text {
     max-width: 100%;
     flex: 1;
@@ -157,7 +166,8 @@
     @media screen and (min-width: 600px) {
       display: block;
       position: absolute;
-      bottom: 5%;
+      max-width: 30%;
+      bottom: 4%;
       right: 5%;
       color: c.$colorWhite;
       font-size: 2rem;
