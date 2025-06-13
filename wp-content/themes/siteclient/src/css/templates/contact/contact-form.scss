@@ -8,8 +8,10 @@
     margin: 2% 10%;
     padding:2% 5%;
     @media screen and (min-width : 600px){
-     font-size:1px ;
-      color: c.$colorBeige;
+      @include f.Poppins-Bold;
+      font-size: 3rem;
+      margin: 2% 10%;
+      padding:2% 5%;
     }
   }
 
@@ -78,10 +80,9 @@
     &_social {
 
       &-link {
-        color: c.$colorRed;
+        color: c.$colorBlack;
         @include f.Poppins-Regular;
-        font-size: 1rem;
-        text-decoration: none;
+        font-size: 2rem;
       }
 
 
@@ -98,20 +99,21 @@
 
     &-1 {
       max-width: 100%;
-      margin: 5% 5% 5% 10%;
+      margin: 2% 5% 5% 10%;
       background-color: c.$colorLightBlue;
       @media screen and (min-width: 600px) {
         max-width: 50%;
-        margin: 5% 5% 5% 10%;
+        margin: 0 5% 5% 10%;
         background-color: c.$colorLightBlue;
       }
     }
 
     &-2 {
       max-width: 1fr;
-      margin: 5% 10% 5% 5%;
+      margin: 2% 10% 5% 5%;
       @media screen and (min-width: 600px) {
-
+        max-width: 1fr;
+        margin: 0 10% 5% 5%;
       }
     }
   }

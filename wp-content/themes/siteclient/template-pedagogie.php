@@ -22,7 +22,7 @@ $future_activities = new WP_Query([
     'order' => 'DESC',
 ]);
 ?>
-<h2 class="front_activities__title">Nos futures activités</h2>
+<h2 class="front_activities__title">Découvez toutes nos activités!</h2>
 <section class="front_activities">
     <?php if ($future_activities->have_posts()) :
         while ($future_activities->have_posts()) : $future_activities->the_post(); ?>

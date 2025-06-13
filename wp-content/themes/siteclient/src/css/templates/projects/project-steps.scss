@@ -23,18 +23,38 @@
 
   &_item {
     display: flex;
-    flex-direction: row;
-    max-width: 100%;
+    flex-direction: column;
+    max-width: 70%;
     margin: 5% 10%;
+    @media screen and (min-width : 600px){
+      display: flex;
+      flex-direction: row;
+      max-width: 100%;
+      margin: 5% 10%;
+    }
   }
 
   &_content {
-    margin: 0 5%;
+    margin: 0 10%;
     width: 100%;
     height: auto;
     overflow: hidden;
     align-items: center;
     justify-content: center;
+    &_image{
+      margin: 0 5%;
+      @media screen and (min-width : 600px){
+
+      }
+    }
+    @media screen and (min-width : 600px){
+      margin: 0 5%;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+    }
 
     &_title {
       @include f.Poppins-Bold;

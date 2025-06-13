@@ -17,7 +17,7 @@ $activities = new WP_Query([
 ]);
 ?>
 
-<h1 role="heading" aria-level="1" class="activities_title">Nos dernières activités</h1>
+<h1 role="heading" aria-level="1" class="activities_title">Découvez toutes nos activités!</h1>
 
 <section class="activities">
     <?php if ($activities->have_posts()) : ?>
@@ -51,7 +51,7 @@ $projets = new WP_Query([
     'lang' => '',
 ]);
 ?>
-<h2 class="projects__title">Nos anciens projets</h2>
+<h2 class="projects__title">Découvez tous nos projets!</h2>
 <section class="projects">
 
     <?php if ($projets->have_posts()) :
