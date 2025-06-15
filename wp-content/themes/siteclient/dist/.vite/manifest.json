@@ -1,0 +1,21 @@
+{
+  "wp-content/themes/siteclient/src/css/style.scss": {
+    "file": "assets/css-BUdJgwTR.css",
+    "src": "wp-content/themes/siteclient/src/css/style.scss",
+    "isEntry": true
+  },
+  "wp-content/themes/siteclient/src/img/arrow-project.svg": {
+    "file": "assets/arrow-project-C66oaial.svg",
+    "src": "wp-content/themes/siteclient/src/img/arrow-project.svg"
+  },
+  "wp-content/themes/siteclient/src/img/image.jpg": {
+    "file": "assets/image-B1DexhBw.jpg",
+    "src": "wp-content/themes/siteclient/src/img/image.jpg"
+  },
+  "wp-content/themes/siteclient/src/js/main.js": {
+    "file": "assets/js-B_WsZ3IC.js",
+    "name": "js",
+    "src": "wp-content/themes/siteclient/src/js/main.js",
+    "isEntry": true
+  }
+}

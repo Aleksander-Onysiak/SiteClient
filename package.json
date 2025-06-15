@@ -1,0 +1,33 @@
+{
+  "name": "siteclient",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "watch": "chokidar './wp-content/themes/siteclient/src/js/app/**/*.js' './wp-content/themes/siteclient/src/css/**/*' -c 'vite build'",
+    "serve": "browser-sync start --proxy 'http://SiteClient.test' --files 'wp-content/themes/siteclient/dist/**/*' --no-https --port 8000"
+  },
+  "keywords": [],
+  "author": "Aleksander Onysiak",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "browser-sync": "^3.0.3",
+    "chokidar-cli": "^3.0.0",
+    "glob": "^11.0.1",
+    "postcss": "^8.5.3",
+    "sass": "^1.89.1",
+    "vite": "^6.3.5"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "iOS >= 10",
+    "IE 11",
+    "not IE 10",
+    "Firefox ESR",
+    "Chrome >= 50",
+    "Android >= 4.4",
+    "Safari >= 9"
+  ]
+}
