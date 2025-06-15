@@ -149,36 +149,38 @@ add_action('admin_post_custom_contact_form', 'dw_contact_form_controller');
 //enregistrer un menu de navigation, en fonction de l'endroit où ils sont exploités façon wordpress
 
 register_nav_menu('header', 'Main navigation');
+register_nav_menu('header-top', 'Top navigation');
 // Créer une nouvelle fonction qui permet de retourner un menu de navigation formaté en un
 // tableau d'objets afin de pouvoir l'afficher à notre guise dans le templates.
 
 function dw_get_navigation_links(string $location): array
 {
-    // Récupérer l'objet WP pour le menu à la location $location
-    $locations = get_nav_menu_locations();
+  // Récupérer l'objet WP pour le menu à la location $location
+  $locations = get_nav_menu_locations();
 
-    if (!isset($locations[$location])) {
-        return [];
-    }
+  if (!isset($locations[$location])) {
+    return [];
+  }
 
-    $nav_id = $locations[$location];
-    $nav = wp_get_nav_menu_items($nav_id);
+  $nav_id = $locations[$location];
+  $nav = wp_get_nav_menu_items($nav_id);
 
-    // Transformer le menu en un tableau de liens, chaque lien étant un objet personnalisé
+  // Transformer le menu en un tableau de liens, chaque lien étant un objet personnalisé
 
-    $links = [];
+  $links = [];
 
-    foreach ($nav as $post) {
-        $link = new stdClass();
-        $link->href = $post->url;
-        $link->label = $post->title;
+  foreach ($nav as $post) {
+    $link = new stdClass();
+    $link->href = $post->url;
+    $link->label = $post->title;
+    $link->title = $post->attr_title;
+    $link->target = $post->target;
+    $link->class = $post->classes[0];
 
-        $links[] = $link;
-    }
+    $links[] = $link;
+  }
 
-    // Retourner ce tableau d'objets (liens).
-
-    return $links;
+  return $links;
 }
 
 //ajouter un formulaire
@@ -347,41 +349,4 @@ function responsive_image($image, $settings): bool|string
 }
 
 //nav menu
-class Custom_Walker_Nav_Menu extends Walker_Nav_Menu
-{
-    public function start_lvl(&$output, $depth = 0, $args = [])
-    {
-        $output .= '<ul class="sub-menu">';
-    }
-
-    public function end_lvl(&$output, $depth = 0, $args = [])
-    {
-        $output .= '</ul>';
-    }
-
-    public function start_el(&$output, $item, $depth = 0, $args = [], $id = 0)
-    {
-        $classes = empty($item->classes) ? [] : (array)$item->classes;
-
-        $is_current = in_array('current-menu-item', $classes) || in_array('current_page_item', $classes);
-        $has_children = in_array('menu-item-has-children', $classes);
-
-        $li_classes = 'nav__container_item' . ($has_children ? ' menu-item-has-children' : '');
-        $link_classes = 'nav__container_link' . ($is_current ? ' nav__container_link--active' : '');
-        $aria_has_popup = $has_children ? ' aria-haspopup="true" aria-expanded="false"' : '';
-
-        $output .= '<li class="' . esc_attr($li_classes) . '">';
-        $output .= '<a href="' . esc_url($item->url) . '" class="' . esc_attr($link_classes) . '"' . $aria_has_popup . '>';
-        $output .= esc_html($item->title);
-        if ($has_children) {
-            $output .= ' <span class="submenu-indicator" aria-hidden="true">▾</span>';
-        }
-        $output .= '</a>';
-    }
-
-    public function end_el(&$output, $item, $depth = 0, $args = [])
-    {
-        $output .= '</li>';
-    }
-}
 flush_rewrite_rules();
