@@ -3,13 +3,7 @@
 <?php include('templates/partials/stage.php'); ?>
 <?php if (have_posts()): while (have_posts()): the_post(); ?>
 
-    <main class="contact">
-        <header class="contact__header">
-            <h1 role="heading" aria-level="1" class="contact__title"><?= get_the_title(); ?></h1>
-        </header>
-
         <section class="contact__form_container">
-
             <?php if (have_rows('informations')): ?>
                 <?php while (have_rows('informations')):
                     the_row();
@@ -62,13 +56,13 @@
                                 </dl>
                             </div>
                         </div>
-                        <div class="contact__form_social">
-                            <h2>Notre page Facebook</h2>
+                        <section class="contact__form_social">
+                            <h3 class="contact__form_social-title">Notre page Facebook</h3>
                             <?php if ($facebook): ?>
                                 <a href="<?= esc_html($facebook); ?>" class="contact__form_social-link">Le Vieux Moulin
                                     SRG </a>
                             <?php endif; ?>
-                        </div>
+                        </section>
                     </div>
                     </div>
                     <div class="contact__form-2">
@@ -85,7 +79,7 @@
                         <?php else: ?>
                             <form action="<?= esc_url(admin_url('admin-post.php')); ?>" method="POST" class="form">
                                 <fieldset class="form__fields form__grid">
-                                    <div class="field">
+                                    <div class="field field--full">
                                         <label for="name" class="field__label">Prénom</label>
                                         <input type="text" name="name" id="name" class="field__input"
                                                placeholder="Nom / Prénom">
@@ -93,7 +87,7 @@
                                             <p class="field__error"><?= $errors['name']; ?></p>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="field">
+                                    <div class="field field--full">
                                         <label for="email" class="field__label">Adresse mail</label>
                                         <input type="email" name="email" id="email" class="field__input"
                                                placeholder="Email">
@@ -101,9 +95,9 @@
                                             <p class="field__error"><?= $errors['email']; ?></p>
                                         <?php endif; ?>
                                     </div>
-                                    <div class="field field--full-small">
+                                    <div class="field field--full">
                                         <label for="subject" class="field__label">Sujet</label>
-                                        <input type="text" name="subject" id="subject" class="field__input-small"
+                                        <input type="text" name="subject" id="subject" class="field__input"
                                                placeholder="Sujet">
                                         <?php if (isset($errors['subject'])): ?>
                                             <p class="field__error"><?= $errors['subject']; ?></p>
@@ -130,7 +124,6 @@
                 <p>Aucune information pour l'instant</p>
             <?php endif; ?>
         </section>
-    </main>
 
 <?php endwhile; endif; ?>
 <?php get_footer(); ?>
