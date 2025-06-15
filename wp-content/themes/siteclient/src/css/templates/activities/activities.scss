@@ -214,51 +214,157 @@
 }
 
 .front_activities {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+
+  @media (min-width: 1000px) {
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+  }
 
   &__title {
     @include f.Montserrat-Bold;
     font-size: 2rem;
-    margin: 2% 10%;
     text-align: center;
   }
 
-  @media screen and (min-width: 1200px) {
-    grid-template-columns: repeat(4, 1fr);
+  &__description {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    @include f.Montserrat-Regular;
+    line-height: 1.2em;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  &__wrapper {
+    gap: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 }
 
 .front_activity__card {
-  background: white;
-  border-radius: 0.5rem;
+  border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
   text-align: center;
   cursor: pointer;
+  position: relative;
+  min-height: 320px;
+  border: 8px solid c.$colorGreen;
+
+  &--red {
+    border: 8px solid c.$colorRed;
+  }
+
+  &--blue {
+    border: 8px solid c.$colorLightBlue;
+  }
+
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 16px;
+    background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  }
 
   &:hover {
     transform: translateY(-5px);
+
+    .front_activity__card-link {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .front_activity__card-excrept {
+      max-height: 64px;
+      opacity: 1;
+    }
+  }
+
+  &-link {
+    &-sro {
+      z-index: 4;
+      font-size: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+    object-fit: cover;
     border-bottom: 1px solid #eee;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    z-index: -1;
   }
 
   &-text-container {
-    padding: 1rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-excrept {
+    opacity: 0;
+    transition: max-height 250ms ease-in-out, opacity 250ms ease-in-out;
+    font-size: 1rem;
+    color: white;
+    @include f.Montserrat-Regular;
+    line-height: 1.2em;
+    max-height: 1px;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    z-index: 2;
+    position: relative;
+    padding: 0 1rem 1rem;
+    text-align: left;
   }
 
   &-title {
     @include f.Montserrat-Regular;
-    font-size: 1.2rem;
-    margin: 0.5rem 0;
+    font-size: 1.5rem;
+    line-height: 1.2em;
+    font-weight: 700;
+    text-align: left;
+    color: white;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    margin-left: 1.125rem;
+    position: relative;
+    z-index: 5;
+
+    &::after {
+      margin-left: 1rem;
+      position: relative;
+      z-index: 2;
+      content: url("/wp-content/themes/siteclient/src/img/arrow-project.svg");
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+    }
   }
 
   &-link-container {
@@ -267,9 +373,31 @@
   }
 
   &-link {
+    opacity: 0;
     @include f.Poppins-Light;
-    font-size: 0.9rem;
-    color: c.$colorBlack;
-    margin-top: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    font-size: 1rem;
+    font-weight: 600;
+    color: c.$colorWhite;
+    padding: 12px;
+    border-radius: 0 24px 0 24px;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    z-index: 2;
+    border: 8px solid c.$colorGreen;
+    transform: scale(0);
+    transform-origin: right top;
+
+    transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+
+    &--red {
+      border: 8px solid c.$colorRed;
+    }
+
+    &--blue {
+      border: 8px solid c.$colorLightBlue
+    }
   }
 }

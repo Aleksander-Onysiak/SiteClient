@@ -35,9 +35,21 @@
 }
 
 .btn {
+  margin-top: 1rem;
   @include f.Montserrat-Bold;
   font-size: 1rem;
-  padding: 2% 10%;
+  padding: 12px 24px;
+  border: 1px solid c.$colorRed;
   background-color: c.$colorRed;
   border-radius: 0.5rem;
+  color: black;
+  cursor: pointer;
+  transition: color 250ms ease-in-out, border 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: white;
+    border: 1px solid c.$colorRedHover;
+    background-color: c.$colorRedHover;
+  }
 }

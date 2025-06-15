@@ -4,50 +4,90 @@
 
 .stage {
   display: flex;
+  gap: 1.5rem;
   flex-direction: column;
   text-align: center;
   background-color: c.$colorOrange;
-  padding: 0 5%;
-  margin: 0 0 5%;
+  padding: 0 0 2.5rem 0;
+  margin: 0;
   position: relative;
 
-  @media screen and (min-width: 600px) {
+  @media (min-width: 1000px) {
     flex-direction: row;
-    padding: 0 2%;
-    margin: 0 0 2%;
+    align-items: center;
+    padding: 7.5rem 0 0;
+    margin: 0 auto;
   }
 
   &__link {
-    @media screen and (min-width: 600px) {
-      @include f.Poppins-Bold;
-      font-size: 1rem;
-      color: c.$colorBlack;
-      text-decoration: none;
+    font-family: "Poppins", Helvetica, Arial, Lucida, sans-serif;
+    padding: 16px 24px;
+    border-radius: 8px;
+    background-color: c.$colorGreen;
+    color: c.$colorBlack;
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 1rem auto 0;
+    border: 1px solid c.$colorGreen;
+    transition: background-color 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out;
+
+    &:hover,
+    &:focus {
+      color: c.$colorWhite;
+      background-color: c.$colorGreenHover;
+      border: 1px solid c.$colorGreenHover;
+    }
+
+    @media (min-width: 1000px) {
+      margin: 1rem 0 0;
+
     }
   }
 
   &__div-text {
+    padding-left: 1.25rem;
     max-width: 100%;
     flex: 1;
-    margin: 5% 2%;
+
+    @media (min-width: 1000px) {
+      margin-left: auto;
+      margin-right: 0;
+      max-width: calc(1400px / 2);
+      width: 50%;
+    }
   }
 
   &__div-image {
-    max-width: 40%;
+    order: -1;
+    border-radius: 0 0 32px 32px;
     width: 100%;
     height: 100%;
     position: relative;
 
-    @media screen and (max-width: 599px) {
-      display: none;
+    @media (min-width: 1000px) {
+      margin-left: 0;
+      margin-right: auto;
+      order: 2;
+      max-width: calc(1400px / 2);
+      width: 75%;
+    }
+
+    img {
+      border-radius: 0 0 32px 32px;
+
+      @media (min-width: 1000px) {
+        border-radius: 0;
+      }
     }
   }
 
   &__image {
-    display: none;
+    display: block;
 
-    @media screen and (min-width: 600px) {
-      display: block;
+    @media (min-width: 1000px) {
       max-width: 100%;
       height: auto;
       object-fit: contain;
@@ -59,37 +99,25 @@
     font-size: 2rem;
     margin: 0 2%;
 
-    @media screen and (min-width: 600px) {
+    @media (min-width: 1000px) {
       font-size: 4rem;
+      text-align: left;
+      margin: 0 0 1rem 0;
     }
   }
 
   &__description {
     @include f.Poppins-Regular;
-    font-size: 0.8rem;
-    margin: 2% 10%;
+    font-size: 1rem;
+    padding: 0 1.25rem;
+    line-height: 1.25em;
+    margin-top: 1rem;
 
-    @media screen and (min-width: 600px) {
+    @media (min-width: 1000px) {
+      padding: 0;
       font-size: 1.2rem;
+      text-align: left;
     }
-  }
-
-  &__subline {
-    display: none;
-
-    @media screen and (min-width: 600px) {
-      display: block;
-      position: absolute;
-      bottom: 5%;
-      right: 5%;
-      color: c.$colorWhite;
-      font-size: 2rem;
-      @include f.Montserrat-Bold;
-      z-index: 2;
-    }
-  }
-
-  &__supline {
   }
 
   &.no-image {
@@ -99,99 +127,45 @@
 
     &__div-image {
       display: none;
+    }
+  }
+
+  &__small {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin: 0 auto;
+    text-align: center;
+    padding: 7.5rem 0;
+
+    @media (min-width: 1000px) {
+      padding: 10rem 0 3.5rem;
+    }
+
+    .stage {
+      &__headline {
+        text-align: center;
+      }
+
+      &__description {
+        text-align: center;
+      }
+
+      &__div {
+        &-text {
+          @media (min-width: 1000px) {
+            margin: 0;
+          }
+        }
+      }
     }
   }
 }
 
 .front-page__stage {
   background-color: c.$colorOrange;
-}
-
-.stage__home {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: c.$colorOrange;
-
-  @media screen and (min-width: 600px) {
-    flex-direction: row;
-    text-align: left;
-  }
-
-  &__div-text {
-    margin: 5% 2%;
-    padding: 0;
-    max-width: 100%;
-    flex: 1;
-
-    @media screen and (min-width: 600px) {
-      max-width: 60%;
-    }
-  }
-
-  &__div-image {
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-    @media screen and (max-width: 599px) {
-      display: none;
-    }
-  }
-
-  &__image {
-    display: none;
-
-    @media screen and (min-width: 600px) {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-  }
-
-  &__headline {
-    @include f.Montserrat-Bold;
-    font-size: 2rem;
-    margin: 0 2%;
-
-    @media screen and (min-width: 600px) {
-      font-size: 4rem;
-    }
-  }
-
-  &__subline {
-    display: none;
-
-    @media screen and (min-width: 600px) {
-      display: block;
-      position: absolute;
-      max-width: 30%;
-      bottom: 4%;
-      right: 5%;
-      color: c.$colorWhite;
-      font-size: 2rem;
-      @include f.Montserrat-Bold;
-      z-index: 2;
-    }
-  }
-
-  &__description {
-    @include f.Poppins-Regular;
-    font-size: 1.2rem;
-    text-align: left;
-    margin: 2%;
-  }
-
-  &.no-image {
-    &__div-text {
-      max-width: 100%;
-    }
-
-    &__div-image {
-      display: none;
-    }
-  }
 }
 
 .stage__div-image picture,

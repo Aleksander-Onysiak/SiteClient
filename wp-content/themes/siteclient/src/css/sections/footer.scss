@@ -8,35 +8,77 @@
   margin: 0;
   padding: 1rem 1.5rem;
 
+  &__div {
+    text-align: center;
+
+    @media (min-width: 1000px) {
+      text-align: left;
+    }
+  }
+
   &__section {
+    max-width: 1300px;
     display: flex;
+    align-items: center;
     flex-direction: column; // ✅ mobile : en colonne
     gap: 2rem;
     margin: 0 10%;
     padding: 1rem 1.5rem;
 
     @media (min-width: 1000px) {
+      align-items: flex-start;
+      margin: 0;
+      padding: 1rem 0;
+      gap: 1.5rem;
       flex-direction: row; // ✅ desktop : en ligne
       justify-content: space-between;
-      align-items: flex-start;
-      margin: 0 ;
     }
   }
 
   &__menu {
     margin: 2% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 
     @media (min-width: 1000px) {
       margin: 0;
+      align-items: flex-start;
     }
 
     &__sublist {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      @media (min-width: 1000px) {
+        align-items: flex-start;
+      }
+
       &__title {
         @include f.Montserrat-Bold;
+          font-size: 1.25rem;
+        margin-bottom: 0.75rem;
       }
 
       &-item {
         @include f.Montserrat-Regular;
+
+        &__content {
+          text-decoration: none;
+          font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+          font-size: 1rem;
+          color: black;
+          font-weight: 700;
+          transition: color 250ms ease-in-out;
+
+          &:hover,
+          &:focus {
+            color: c.$colorRedHover;
+          }
+        }
       }
     }
   }

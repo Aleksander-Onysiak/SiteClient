@@ -22,12 +22,13 @@
     max-width:100%;
     padding: 0.5rem 2rem;
     gap: 1rem;
-    @media screen and (min-width : 600px){
+
+    @media (min-width : 1000px){
       display: flex;
       max-width: 80vw;
       padding: 1rem 2rem;
       gap: 1rem;
-      align-items: flex-start;
+      align-items: center;
     }
   }
 
@@ -131,8 +132,8 @@
     }
     .gallery__main-image {
       position: fixed;
-      top: 5rem;
-      left: 1rem;
+      top: 10rem;
+      left: 4rem;
       max-width: 80%;
       max-height: 100%;
       object-fit: contain;
@@ -155,7 +156,7 @@
 
     .close-button {
       position: absolute;
-      top: 1rem;
+      top: 3rem;
       right: 3rem;
       background-color: c.$colorWhite;
       border: none;
@@ -174,7 +175,7 @@
 
   .gallery_container-img {
     position: fixed;
-    bottom:20px;
+    bottom:4rem;
     display: flex;
     flex-direction: row;
     max-width: 100%;
@@ -227,11 +228,13 @@
 .gallery__title {
   flex: 100%;
   @include f.Poppins-Bold;
-  font-size: 1rem;
+  font-size: 2rem;
+  text-align: center;
   margin: 0;
   padding: 0.5rem;
-  @media screen and (min-width : 600px){
-    flex: 0 0 40%;
+
+  @media (min-width : 1000px){
+    text-align: center;
     @include f.Poppins-Bold;
     font-size: 3rem;
     margin: 0;

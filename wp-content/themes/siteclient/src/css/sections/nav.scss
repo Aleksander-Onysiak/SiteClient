@@ -2,19 +2,31 @@
 @use "../visuals/buttons" as b;
 @use "../visuals/colors" as c;
 
+.header {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+
 .nav {
   &__toggle {
     display: none;
   }
 
   &__burger {
+    position: relative;
+    z-index: 20;
     display: none;
     cursor: pointer;
     flex-direction: column;
     justify-content: space-between;
     width: 2rem;
     height: 1.5rem;
-    margin: 1.5rem 1rem;
+    background-color: c.$colorWhite;
+    padding: 1.5rem 1rem;
 
     span {
       height: 3px;
@@ -30,86 +42,173 @@
 
   &__container {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
     justify-content: space-between;
-    gap: 0.5rem;
     list-style-type: none;
     position: relative;
 
-    .nav__container_item {
-      position: relative;
-      margin: 0 0.25rem;
+    @media (min-width: 1000px) {
+      flex-direction: column;
+      gap: 0;
+    }
 
-      .sub-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        margin: 0;
-        flex-direction: column;
-        background-color: c.$colorBeige;
-        padding: 0.5rem;
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        z-index: 10;
-        list-style: none;
+    &_link {
+      &--button {
+        padding: 8px;
 
-        li {
-          padding: 0.5rem 1rem;
-          white-space: nowrap;
+        a {
+          border-radius: 8px;
+          background-color: c.$colorRed;
+          border: 1px solid c.$colorRed;
+          transition: background-color 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out;
+
+          &:hover,
+          &:focus {
+            color: c.$colorWhite;
+            background-color: c.$colorRedHover;
+            border: 1px solid c.$colorRedHover;
+          }
+        }
+
+        &--first {
+          padding: 8px;
+
+          @media (min-width: 1000px) {
+            margin-left: auto;
+          }
 
           a {
-            @include f.Montserrat-Regular;
-            font-size: 0.95rem;
-            color: c.$colorBlack;
-            text-decoration: none;
+            border-radius: 8px;
+            background-color: c.$colorLightBlue;
+            border: 1px solid c.$colorLightBlue;
+            transition: background-color 250ms ease-in-out, border 250ms ease-in-out, color 250ms ease-in-out;
 
-            &:hover {
-              text-decoration: underline;
+            &:hover,
+            &:focus {
+              color: c.$colorWhite;
+              background-color: c.$colorLightBlueHover;
+              border: 1px solid c.$colorLightBlueHover;
             }
           }
         }
       }
+    }
 
-      &:hover > .sub-menu,
-      &:focus-within > .sub-menu {
-        display: flex;
+    &-logo {
+      &-a {
+        display: none;
+
+        @media (min-width: 1000px) {
+          display: initial;
+        }
       }
     }
 
-    &_link {
-      @include f.Montserrat-Regular;
-      display: block;
+    &-top {
+      max-width: 1400px;
+      margin: 0 auto;
       width: 100%;
-      height: 100%;
-      color: c.$colorBlack;
-      font-size: 1rem;
-      padding: 2% 1.5%;
-      text-decoration: none;
-      white-space: nowrap;
+      display: flex;
+      flex-direction: column;
+      background-color: c.$topNavBackground;
 
-      &:hover {
-        text-decoration: underline;
+      @media (min-width: 1000px) {
+        flex-direction: row;
+        justify-content: flex-end;
+
+        background-color: c.$topNavBackground;
       }
+
+      &-background {
+        order: 2;
+        width: 100%;
+        background-color: c.$topNavBackground;
+
+        @media (min-width: 1000px) {
+          order: -1;
+        }
+      }
+
+      &-a {
+        font-size: 1rem;
+        color: c.$colorBlack;
+        text-decoration: none;
+        font-family: "Poppins", Helvetica, Arial, Lucida, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 24px;
+        width: calc(100% - 48px);
+
+        @media (min-width: 1000px) {
+          font-size: 0.875rem;
+          padding: 18px 16px;
+          width: calc(100% - 32px);
+        }
+      }
+    }
+
+    &-under {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: c.$colorOrange;
+
+      @media (min-width: 1000px) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        background-color: c.$colorWhite;
+      }
+
+      &-background {
+        width: 100%;
+        background-color: c.$colorOrange;
+
+        @media (min-width: 1000px) {
+          background-color: c.$colorWhite;
+        }
+      }
+    }
+
+    &-a {
+      font-size: 1rem;
+      color: c.$colorBlack;
+      text-decoration: none;
+      font-family: "Poppins", Helvetica, Arial, Lucida, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 24px;
+      width: calc(100% - 48px);
     }
   }
 
   &__container_link--active {
     @include f.Montserrat-Bold;
     font-size: 1.2rem;
+
+    &-small {
+      @include f.Montserrat-Bold;
+      font-size: 1rem;
+    }
   }
 
   @media (max-width: 999px) {
     &__container {
+      padding-top: 4rem;
       position: absolute;
       width: 100%;
       background: c.$colorOrange;
       flex-direction: column;
-      align-items: flex-start;
-      padding: 1rem;
       left: 0;
-      top: 5.5rem;
+      top: 0;
       display: none;
-      z-index: 9;
+      z-index: 10;
 
       .nav__container_item {
         width: 100%;
@@ -140,16 +239,7 @@
 
     #menu-toggle:checked + .nav__burger + .nav__container {
       display: flex;
-    }
-  }
-
-  // CENTRAGE EN DESKTOP
-  @media (min-width: 1000px) {
-    &__container {
-      margin: 2% 10%;
-      max-width: 80%;
-      justify-content: center;
-      gap:1rem;
+      align-items: center;
     }
   }
 }
