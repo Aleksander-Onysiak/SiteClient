@@ -2,7 +2,6 @@
 if (get_row_layout() === 'grid-card'):
     $grid_title = get_sub_field('grid_title');
     $grid_description = get_sub_field('grid_description');
-
     $cards = get_sub_field('grid-card-repeater');
 
     if ($cards):
@@ -15,11 +14,10 @@ if (get_row_layout() === 'grid-card'):
         ?>
 
         <section class="grid-container">
-
             <?php if ($grid_title || $grid_description): ?>
                 <div class="grid-container__header">
                     <?php if ($grid_title): ?>
-                        <p class="grid-container__header-title" aria-level="2" role="heading"><?= esc_html($grid_title); ?></p>
+                        <h2 class="grid-container__header-title" aria-level="2" role="heading"><?= esc_html($grid_title); ?></h2>
                     <?php endif; ?>
                     <?php if ($grid_description): ?>
                         <p class="grid-container__header-description"><?= esc_html($grid_description); ?></p>
@@ -28,7 +26,6 @@ if (get_row_layout() === 'grid-card'):
             <?php endif; ?>
 
             <div class="grid-cards">
-
                 <?php
                 $currentLinkIndex = 0;
 
@@ -49,7 +46,7 @@ if (get_row_layout() === 'grid-card'):
                     }
                     ?>
 
-                    <div class="<?= esc_attr(implode(' ', $classes)); ?>">
+                    <article class="<?= esc_attr(implode(' ', $classes)); ?>">
                         <div class="grid-card-header">
                             <?php if ($icon): ?>
                                 <img class="grid-card-header-img"
@@ -64,7 +61,7 @@ if (get_row_layout() === 'grid-card'):
 
                         <div class="grid-card-body">
                             <?php if ($description): ?>
-                                <p class="grid-card-description"><?= wp_kses_post($description); ?></p>
+                                <div class="grid-card-description"><?= wp_kses_post($description); ?></div>
                             <?php endif; ?>
 
                             <?php if ($link): ?>
@@ -75,7 +72,7 @@ if (get_row_layout() === 'grid-card'):
                                 </a>
                             <?php endif; ?>
                         </div>
-                    </div>
+                    </article>
 
                 <?php endforeach; ?>
 
